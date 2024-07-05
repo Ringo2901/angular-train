@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px;
+  }
+  
+  .filters {
+    width: 25%;
+    padding: 10px;
+    background-color: azure;
+    border-right: 1px solid #ccc;
+  }
+  
+  .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 70%;
+  }
+  
+  .product-item {
+    width: calc(33.33% - 20px);
+  }
+  
