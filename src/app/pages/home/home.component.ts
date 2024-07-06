@@ -1,42 +1,80 @@
-import {Component, inject} from '@angular/core';
-import { FiltersComponent } from '../../components/filters/filters.component';
-import { ProductTileComponent } from '../../components/product-tile/product-tile.component';
+import {Component, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/products.service';
-import {ProductModel} from "../../models/product.model";
-import {ActivatedRoute} from "@angular/router";
+import { ProductModel } from "../../models/product.model";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { Subscription } from "rxjs";
+import {ProductTileComponent} from "../../components/product-tile/product-tile.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FiltersComponent, ProductTileComponent, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, ProductTileComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  products: ProductModel[] = [];
+export class HomeComponent implements OnInit, OnDestroy {
   productService: ProductService = inject(ProductService);
-  filters: any = {};
+  filterForm: FormGroup;
+  subscription: Subscription;
+  products: ProductModel[] = [];
+  badgeTiles: string[] = [];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
+    this.subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        let queryParams = this.route.snapshot.queryParams;
+        console.log(queryParams);
+        let queryParamsString = this.productService.createQueryParams(queryParams);
+        this.badgeTiles = this.productService.createBadges(queryParams);
+        this.filterForm.patchValue(queryParams);
+        this.productService.filterProducts(queryParamsString).subscribe(value => this.products = value);
+      }
+    });
 
-  ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.filters = {
-        priceFrom: params['priceFrom'] || '',
-        priceTo: params['priceTo'] || '',
-        ratingFrom: params['ratingFrom'] || '',
-        ratingTo: params['ratingTo'] || '',
-        inStock: params['inStock'] === 'true',
-        hasReviews: params['hasReviews'] === 'true'
-      };
-      this.fetchProducts(this.filters);
+    this.filterForm = this.fb.group({
+      priceFrom: [null, Validators.min(0)],
+      priceTo: [null, Validators.min(0)],
+      ratingFrom: [null, [Validators.min(0), Validators.max(5)]],
+      ratingTo: [null, [Validators.min(0), Validators.max(5)]],
+      inStock: [null],
+      hasReviews: [null]
     });
   }
 
-  fetchProducts(filters: any): void {
-    this.productService.getProducts(filters).subscribe(value => {
-      this.products = value;
-    });
+  ngOnInit() {}
+
+  getCountById(id: number) {
+    return 0;
   }
+
+  onSubmit() {
+    let queryParamsObj: { [key: string]: any } = {};
+    for (const key in this.filterForm.value) {
+      if (this.filterForm.value[key] !== null && this.filterForm.value[key] !== false) {
+        queryParamsObj[key] = this.filterForm.value[key];
+      }
+    }
+    this.router.navigate(['/'], { queryParams: { ...queryParamsObj } });
+  }
+
+  onClear() {
+    this.filterForm.reset();
+    this.router.navigate([], { replaceUrl: true });
+  }
+
+  removeFilter(index: number) {
+    let queryParams = this.route.snapshot.queryParams;
+    const removedFilter = Object.keys(queryParams)[index];
+    this.filterForm.get(removedFilter)?.reset();
+    const { [removedFilter]: removedFilter1, ...restFilters } = queryParams;
+    this.router.navigate(['/'], { queryParams: { ...restFilters } });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  onDelete(id: number) {}
 }
