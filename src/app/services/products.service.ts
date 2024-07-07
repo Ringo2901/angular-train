@@ -66,6 +66,11 @@ export class ProductService {
     return filterBadges;
   }
 
+  deleteProduct(id: number) {
+    return this.httpClient
+      .delete(`${this.apiUrlBase}/products/${id}`);
+  }
+
   filterProducts(filters: string): Observable<ProductModel[]> {
     console.log(`${this.apiUrlBase}/products?${filters}`);
     return this.httpClient
@@ -74,5 +79,16 @@ export class ProductService {
 
   getProductById(id: number): Observable<ProductModel> {
     return this.httpClient.get<ProductModel>(`${this.apiUrlBase}/products/${id}`);
+  }
+
+  getProducts(): Observable<ProductModel[]> {
+    return this.httpClient.get<ProductModel[]>(`${this.apiUrlBase}/products`);
+  }
+
+  updateProduct(newProduct: {[key: string]: string}, id: number): Observable<ProductModel> {
+    return this.httpClient
+      .patch<ProductModel>(`${this.apiUrlBase}/products/${id}`, {
+        ...newProduct
+      });
   }
 }

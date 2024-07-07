@@ -42,9 +42,10 @@
     </div>
 </aside>
 <div class="container">
+  <div class="not-found-message" *ngIf="products.length===0">Products not found!</div>
   <div class="product-grid">
     <div *ngFor="let product of products" class="product-item">
-      <app-product-tile [product]="product"></app-product-tile>
+      <app-product-tile (delete)="onDelete(product.id)" [product]="product"></app-product-tile>
     </div>
   </div>
 </div>

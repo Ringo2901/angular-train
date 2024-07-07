@@ -124,3 +124,10 @@ button[type="submit"]:hover {
   color: #ff0000;
   cursor: pointer;
 }
+
+.not-found-message {
+  font-size: 3em;
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}

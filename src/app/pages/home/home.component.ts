@@ -76,5 +76,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onDelete(id: number) {}
+  onDelete(id:number) {
+    this.productService.deleteProduct(id).subscribe(
+      () => {
+        this.productService.getProducts().subscribe(value => this.products = value);
+      }
+    )
+  }
 }
