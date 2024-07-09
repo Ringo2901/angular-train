@@ -1,6 +1,6 @@
 <div class="add-to-cart">
-    <button *ngIf="showAddToCartButton"  [disabled]="isDisabled" (click)="addToCart()">Add to Cart</button>
-    <div *ngIf="showCounter" class="counter">
+    <button *ngIf="!isAddToCartBtnClicked"  [disabled]="isDisabled" (click)="addToCart()">Add to Cart</button>
+    <div *ngIf="isAddToCartBtnClicked" class="counter">
       <button (click)="decrement()">-</button>
       <span>{{ count }}</span>
       <button (click)="increment()">+</button>

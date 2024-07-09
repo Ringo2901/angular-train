@@ -12,6 +12,7 @@ import {RouterLink} from "@angular/router";
 })
 export class ProductTileComponent {
   @Input() product!: ProductModel;
+  @Input() count!: number;
   @Output() delete = new EventEmitter<void>();
 
   deleteProduct() {

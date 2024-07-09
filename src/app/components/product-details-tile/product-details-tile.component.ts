@@ -25,6 +25,7 @@ import {AvailabilityColorDirective} from "./availability-color.directive";
 })
 export class ProductDetailsTileComponent {
   @Input() product!: ProductModel;
+  @Input() count!: number;
   reviews:ReviewModel[] = [];
   reviewService:ReviewService = inject(ReviewService);
 

@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {map, Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {ProductModel} from "../models/product.model";
 
 @Injectable({
@@ -46,14 +46,12 @@ export class ProductService {
   }
 
   createQueryParams(queryParams: { [key: string]: number | string }) {
-    debugger;
     let paramsArr = [];
     for (let key in queryParams) {
       if (this.routerObj[key]) {
         paramsArr.push(this.routerObj[key].queryParam + "=" + (queryParams[key] === 'true' ? 0 : queryParams[key]));
       }
     }
-    console.log(paramsArr.join("&"));
     return paramsArr.join("&");
   }
 
@@ -72,7 +70,6 @@ export class ProductService {
   }
 
   filterProducts(filters: string): Observable<ProductModel[]> {
-    console.log(`${this.apiUrlBase}/products?${filters}`);
     return this.httpClient
       .get<ProductModel[]>(`${this.apiUrlBase}/products?${filters}`);
   }

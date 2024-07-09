@@ -6,6 +6,8 @@ import { ProductModel } from "../../models/product.model";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import {ProductTileComponent} from "../../components/product-tile/product-tile.component";
+import {CartModel} from "../../models/cart.model";
+import {CartService} from "../../services/cart.service";
 
 @Component({
   selector: 'app-home',
@@ -16,16 +18,16 @@ import {ProductTileComponent} from "../../components/product-tile/product-tile.c
 })
 export class HomeComponent implements OnInit, OnDestroy {
   productService: ProductService = inject(ProductService);
+  cartService: CartService = inject(CartService);
   filterForm: FormGroup;
   subscription: Subscription;
   products: ProductModel[] = [];
   badgeTiles: string[] = [];
-
+  cart: CartModel[] = [];
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
     this.subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         let queryParams = this.route.snapshot.queryParams;
-        console.log(queryParams);
         let queryParamsString = this.productService.createQueryParams(queryParams);
         this.badgeTiles = this.productService.createBadges(queryParams);
         this.filterForm.patchValue(queryParams);
@@ -43,10 +45,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.cartService.fetchCart().subscribe(cart => {
+      this.cart = cart;
+    })
+  }
 
   getCountById(id: number) {
-    return 0;
+    const order = this.cart.find(order => order.id === id);
+    return order?.count || 0;
   }
 
   onSubmit() {
