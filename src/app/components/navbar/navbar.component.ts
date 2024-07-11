@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faSignOutAlt, faShoppingCart, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
+import {UserService} from "../../services/user.service";
+import {UserModel} from "../../models/user.model";
 
 @Component({
   selector: 'app-navbar',
@@ -16,12 +18,22 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  constructor(private router: Router, library: FaIconLibrary) {
+  userService: UserService = inject(UserService);
+  isAuthenticated = false;
+  userEmail: string | null = null;
+
+  constructor(library: FaIconLibrary) {
     library.addIcons(faSignOutAlt, faShoppingCart, faSearch, faUser);
   }
 
+  ngOnInit() {
+    this.userService.user$.subscribe(user => {
+      this.isAuthenticated = !!user;
+      this.userEmail = user ? user.email : null;
+    });
+  }
+
   logout() {
-    console.log('Выход из аккаунта');
-    this.router.navigate(['/auth']);
+    this.userService.logout();
   }
 }

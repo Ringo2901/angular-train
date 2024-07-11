@@ -1,26 +1,29 @@
 <nav class="navbar">
-    <div class="navbar-brand">
-      <a href="/">Exprt Soft Shop</a>
+  <div class="navbar-brand">
+    <a href="/products">Exprt Soft Shop</a>
+  </div>
+  <div class="navbar-items">
+    <div class="navbar-item">
+      <fa-icon [icon]="['fas', 'search']"></fa-icon>
+      <input type="text" placeholder="Search...">
     </div>
-    <div class="navbar-items">
-      <div class="navbar-item">
-        <fa-icon [icon]="['fas', 'search']"></fa-icon>
-        <input type="text" placeholder="Search...">
-      </div>
-      <div class="navbar-item">
-        <a [routerLink]="['/cart']">
-          <fa-icon [icon]="['fas', 'shopping-cart']"></fa-icon>
-        </a>
-      </div>
-      <div class="navbar-item">
-        <button (click)="logout()">
-          <fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon>
-        </button>
-      </div>
-      <div class="navbar-item">
-        <a href="/auth">
-          <fa-icon [icon]="['fas', 'user']"></fa-icon>
-        </a>
-      </div>
+    <div class="navbar-item">
+      <a [routerLink]="['/cart']">
+        <fa-icon [icon]="['fas', 'shopping-cart']"></fa-icon>
+      </a>
     </div>
-  </nav>
+    <div class="navbar-item" *ngIf="isAuthenticated">
+      <span>Welcome, {{ userEmail }}!</span>
+    </div>
+    <div class="navbar-item" *ngIf="isAuthenticated">
+      <button (click)="logout()">
+        <fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon>
+      </button>
+    </div>
+    <div class="navbar-item" *ngIf="!isAuthenticated">
+      <a [routerLink]="['/auth']">
+        <fa-icon [icon]="['fas', 'user']"></fa-icon>
+      </a>
+    </div>
+  </div>
+</nav>
