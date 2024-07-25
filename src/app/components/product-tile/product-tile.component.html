@@ -1,0 +1,19 @@
+<div class="product-tile">
+  <div class="product-image">
+    <img [src]="product.image" alt="{{ product.title }}" onerror="this.src='../../../assets/NoImage.jpg';">
+  </div>
+  <h3 class="product-title">
+    <a [routerLink]="['/products', product.id]">
+      {{ product.title }}
+    </a>
+  </h3>
+  <div class="product-details">
+    <span class="product-rating">{{ product.rating.rate }} ★</span>
+    <span class="product-price">{{ product.price }} $</span>
+  </div>
+  <div class="product-actions">
+    <app-add-to-cart-button [count]="count" [productID]="product.id" [isDisabled]="product.stock === 0"></app-add-to-cart-button>
+    <a [routerLink]="['/product/edit', product.id]" class="button">Edit</a>
+    <button (click)="deleteProduct()">Delete</button>
+  </div>
+</div>

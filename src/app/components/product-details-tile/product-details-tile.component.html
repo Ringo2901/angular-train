@@ -1,0 +1,36 @@
+<div class="product-details-page">
+  <div class="product-tile">
+    <div class="product-image">
+      <img [src]="product.image" alt="{{ product.title }}" onerror="this.src='../../../assets/NoImage.jpg';">
+    </div>
+    <div class="product-info">
+      <h3 class="product-title">{{ product.title }}</h3>
+      <div class="product-details">
+        <div class="product-rating">
+          <span class="product-rating-count">{{ product.rating.count }} reviews</span>
+          <span class="product-rating-value">{{ product.rating.rate }} ★</span>
+        </div>
+        <div class="product-price">{{ product.price }} $</div>
+      </div>
+      <div class="product-description">
+        <p>{{ product.description }}</p>
+      </div>
+      <div class="product-stock" [appAvailabilityColor]="product.stock">
+        <span *ngIf="product.stock > 10">In stock</span>
+        <span *ngIf="product.stock > 0 && product.stock <= 10">Almost sold out</span>
+        <span *ngIf="product.stock === 0">Out of stock</span>
+      </div>
+      <div class="product-actions">
+        <app-add-to-cart-button [count]="count" [productID]="product.id" [isDisabled]="product.stock === 0"></app-add-to-cart-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-reviews">
+    <h3>Reviews:</h3>
+    <div *ngIf="reviews.length === 0">There are no reviews for this product.</div>
+    <div *ngFor="let review of reviews" class="review-item">
+      <app-review [review]="review"></app-review>
+    </div>
+  </div>
+</div>
