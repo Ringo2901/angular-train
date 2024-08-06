@@ -7,7 +7,8 @@ import {Directive, ElementRef, Input, OnChanges, Renderer2} from '@angular/core'
 export class AvailabilityColorDirective implements OnChanges {
   @Input() appAvailabilityColor: number = 0;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+  }
 
   ngOnChanges() {
     this.updateColor();

@@ -24,7 +24,7 @@ export class AuthComponent {
   onSubmit(form: NgForm) {
     const user: UserModel = {email: form.controls['email'].value, password: form.controls['password'].value};
     debugger;
-    if(this.isAuthentication) {
+    if (this.isAuthentication) {
       this.userService.login(user);
     } else {
       this.userService.signUp(user);

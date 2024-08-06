@@ -1,9 +1,9 @@
 <div class="add-to-cart">
     <button *ngIf="!isAddToCartBtnClicked"  [disabled]="isDisabled" (click)="addToCart()">Add to Cart</button>
     <div *ngIf="isAddToCartBtnClicked" class="counter">
-      <button (click)="decrement()">-</button>
-      <span>{{ count }}</span>
-      <button (click)="increment()">+</button>
+      <button (click)="decrementNumberOfItems()">-</button>
+      <span>{{ numberOfItems }}</span>
+      <button (click)="incrementNumberOfItems()">+</button>
     </div>
   </div>
 

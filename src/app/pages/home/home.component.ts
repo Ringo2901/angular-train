@@ -1,10 +1,10 @@
-import {Component, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { ProductService } from '../../services/products.service';
-import { ProductModel } from "../../models/product.model";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { Subscription } from "rxjs";
+import {CommonModule} from '@angular/common';
+import {ProductService} from '../../services/products.service';
+import {ProductModel} from "../../models/product.model";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {Subscription} from "rxjs";
 import {ProductTileComponent} from "../../components/product-tile/product-tile.component";
 import {CartModel} from "../../models/cart.model";
 import {CartService} from "../../services/cart.service";
@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   products: ProductModel[] = [];
   badgeTiles: string[] = [];
   cart: CartModel[] = [];
+
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
     this.subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -63,27 +64,27 @@ export class HomeComponent implements OnInit, OnDestroy {
         queryParamsObj[key] = this.filterForm.value[key];
       }
     }
-    this.router.navigate(['/'], { queryParams: { ...queryParamsObj } });
+    this.router.navigate(['/'], {queryParams: {...queryParamsObj}});
   }
 
   onClear() {
     this.filterForm.reset();
-    this.router.navigate([], { replaceUrl: true });
+    this.router.navigate([], {replaceUrl: true});
   }
 
   removeFilter(index: number) {
     let queryParams = this.route.snapshot.queryParams;
     const removedFilter = Object.keys(queryParams)[index];
     this.filterForm.get(removedFilter)?.reset();
-    const { [removedFilter]: removedFilter1, ...restFilters } = queryParams;
-    this.router.navigate(['/'], { queryParams: { ...restFilters } });
+    const {[removedFilter]: removedFilter1, ...restFilters} = queryParams;
+    this.router.navigate(['/'], {queryParams: {...restFilters}});
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  onDelete(id:number) {
+  onDelete(id: number) {
     this.productService.deleteProduct(id).subscribe(
       () => {
         this.productService.getProducts().subscribe(value => this.products = value);

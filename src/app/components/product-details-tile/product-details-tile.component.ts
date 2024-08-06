@@ -26,16 +26,18 @@ import {AvailabilityColorDirective} from "./availability-color.directive";
 export class ProductDetailsTileComponent {
   @Input() product!: ProductModel;
   @Input() count!: number;
-  reviews:ReviewModel[] = [];
-  reviewService:ReviewService = inject(ReviewService);
+  reviews: ReviewModel[] = [];
+  reviewService: ReviewService = inject(ReviewService);
 
   ngAfterViewInit() {
     this.loadReviews();
   }
 
-  loadReviews(){
+  loadReviews() {
     this.reviewService.getReviewsByProductId(this.product.id).subscribe(
-      value => { this.reviews = value; }
+      value => {
+        this.reviews = value;
+      }
     )
   }
 }

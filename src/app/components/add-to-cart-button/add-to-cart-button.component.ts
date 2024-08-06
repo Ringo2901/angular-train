@@ -13,7 +13,7 @@ import {CartService} from "../../services/cart.service";
 })
 export class AddToCartButtonComponent {
   isAddToCartBtnClicked: boolean = false;
-  @Input() count!: number;
+  @Input() numberOfItems!: number;
   @Input() productID!: number;
   @Input() isDisabled: boolean = false;
   product!: ProductModel;
@@ -21,13 +21,13 @@ export class AddToCartButtonComponent {
   cartService: CartService = inject(CartService);
 
   addToCart() {
-    this.count++;
+    this.numberOfItems++;
     this.isAddToCartBtnClicked = true;
 
     let newCartItem = {
       id: this.product.id,
       title: this.product.title,
-      count: this.count,
+      count: this.numberOfItems,
       price: this.product.price
     }
     debugger;
@@ -39,25 +39,25 @@ export class AddToCartButtonComponent {
       value => this.product = value
     )
     this.cartService.fetchProductCountInCart(this.productID).subscribe(
-      count => this.count = count
+      count => this.numberOfItems = count
     )
   }
 
   ngOnChanges() {
-    this.isAddToCartBtnClicked = !(this.count === 0);
+    this.isAddToCartBtnClicked = !(this.numberOfItems === 0);
   }
 
-  increment() {
-    this.count++;
-    this.cartService.updateCart({'count': this.count}, this.productID);
+  incrementNumberOfItems() {
+    this.numberOfItems++;
+    this.cartService.updateCart({'count': this.numberOfItems}, this.productID);
 
   }
 
-  decrement() {
-    this.count--;
-    if (this.count >= 1) {
-      this.cartService.updateCart({'count': this.count}, this.productID);
-    } else if (this.count === 0) {
+  decrementNumberOfItems() {
+    this.numberOfItems--;
+    if (this.numberOfItems >= 1) {
+      this.cartService.updateCart({'count': this.numberOfItems}, this.productID);
+    } else if (this.numberOfItems === 0) {
       this.cartService.deleteCartOrder(this.productID).subscribe();
       this.isAddToCartBtnClicked = false;
     }

@@ -1,10 +1,9 @@
 import {Component, inject} from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
-import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faSignOutAlt, faShoppingCart, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
-import { CommonModule } from '@angular/common';
+import {RouterLink} from '@angular/router';
+import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {faSearch, faShoppingCart, faSignOutAlt, faUser} from '@fortawesome/free-solid-svg-icons';
+import {CommonModule} from '@angular/common';
 import {UserService} from "../../services/user.service";
-import {UserModel} from "../../models/user.model";
 
 @Component({
   selector: 'app-navbar',

@@ -22,7 +22,7 @@ export class CartService {
       }).subscribe();
   }
 
-  updateCart(newOrder: { [key: string]: number }, id: number){
+  updateCart(newOrder: { [key: string]: number }, id: number) {
     return this.httpClient
       .patch<CartModel>(`${this.apiUrlBase}/cart/${id}`, {
         ...newOrder

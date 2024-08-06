@@ -14,7 +14,9 @@ export class UserService {
   userSubject = new BehaviorSubject<any>(null);
   isAuth = new BehaviorSubject<boolean>(false);
   user$ = this.userSubject.asObservable();
-  constructor(private router: Router) {}
+
+  constructor(private router: Router) {
+  }
 
   signUp(user: UserModel) {
     this.httpClient

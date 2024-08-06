@@ -17,10 +17,12 @@ import {CartModel} from "../../models/cart.model";
 })
 export class ProductDetailsComponent {
   product!: ProductModel;
-  productService:ProductService = inject(ProductService);
-  cartService:CartService = inject(CartService);
+  productService: ProductService = inject(ProductService);
+  cartService: CartService = inject(CartService);
   cart: CartModel[] = [];
-  constructor(private route: ActivatedRoute) {}
+
+  constructor(private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     let routeParams = this.route.snapshot.paramMap;
