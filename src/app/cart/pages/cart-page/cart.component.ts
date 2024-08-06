@@ -1,8 +1,8 @@
 import {Component, inject} from '@angular/core';
-import {CartService} from "../../services/cart-page.service";
-import {CartModel} from "../../models/cart-page.model";
 import {NgForOf, NgIf} from "@angular/common";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
+import {CartService} from "../../../shared/services/cart.service";
+import {CartModel} from "../../../shared/models/cart.model";
 
 @Component({
   selector: 'app-cart-page',

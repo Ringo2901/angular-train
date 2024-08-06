@@ -15,7 +15,7 @@ export class CartService {
       .get<CartModel[]>(`${this.apiUrlBase}/cart`);
   }
 
-  addToCart(newOrder: { [key: string]: string | number }) {
+  addToCart(newOrder: { price: number; count: number; id: number; title: string | undefined }) {
     return this.httpClient
       .post<CartModel>(`${this.apiUrlBase}/cart`, {
         ...newOrder
@@ -38,7 +38,7 @@ export class CartService {
     return this.httpClient
       .get<CartModel>(`${this.apiUrlBase}/cart/${id}`)
       .pipe(
-        map(order => order.count),
+        map(order => order.count ?? 0),
         catchError(error => {
           return of(0);
         })

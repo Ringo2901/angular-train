@@ -82,7 +82,13 @@ export class ProductService {
     return this.httpClient.get<ProductModel[]>(`${this.apiUrlBase}/products`);
   }
 
-  updateProduct(newProduct: { [key: string]: string }, id: number): Observable<ProductModel> {
+  updateProduct(newProduct: {
+    image: string | undefined;
+    price: string;
+    description: string | undefined;
+    title: string | undefined;
+    stock: string
+  }, id: number): Observable<ProductModel> {
     return this.httpClient
       .patch<ProductModel>(`${this.apiUrlBase}/products/${id}`, {
         ...newProduct

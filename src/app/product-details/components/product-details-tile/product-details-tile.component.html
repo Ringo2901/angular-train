@@ -7,8 +7,8 @@
       <h3 class="product-title">{{ product.title }}</h3>
       <div class="product-details">
         <div class="product-rating">
-          <span class="product-rating-count">{{ product.rating.count }} reviews</span>
-          <span class="product-rating-value">{{ product.rating.rate }} ★</span>
+          <span class="product-rating-count">{{ product.rating?.count }} reviews</span>
+          <span class="product-rating-value">{{ product.rating?.rate }} ★</span>
         </div>
         <div class="product-price">{{ product.price }} $</div>
       </div>
@@ -21,7 +21,7 @@
         <span *ngIf="product.stock === 0">Out of stock</span>
       </div>
       <div class="product-actions">
-        <app-add-to-cart-button [numberOfItems]="count" [productID]="product.id" [isDisabled]="product.stock === 0"></app-add-to-cart-button>
+        <app-add-to-cart-page-button [numberOfItems]="count" [productID]="product.id" [isDisabled]="product.stock === 0"></app-add-to-cart-page-button>
       </div>
     </div>
   </div>

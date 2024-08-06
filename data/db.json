@@ -4,13 +4,8 @@
       "id": "1",
       "title": "Van Cleef & Arpels Extraordinaire Precious Oud Eau de Parfum, 75ml",
       "price": "100",
-      "description": "The scents of Van Cleef & Arpels are magical Collection Extraordinaire, unique and breathe an unmistakable personality. From all the use of precious old and present the mix fascinating, spicy, woody and floral notes. Adventure and joy of life, a steady state in life and a taste for a touch of luxury are side effects associated with the scents of the Van Cleef & Arpels Collection Extraordinaire and distinguish with a lot of individuality precise mix of minimalism and luxury expresses that the simplicity of things is true luxury often and there is no need to feel wealth happiness and love, joy, personality and sensuality and passion. Van Cleef & Arpels was found in 1896 and has over more than 55 fragrances.",
       "image": "https://i2.stat01.com/2/7970/179695882/075a3e/g84yx-huirajuvjcjj-l9uaflfpzxlpo0fgptkizifehlhxcfkwfrvop6anyy1fqjkslzj8ce8abffgafm8340o-jpg.jpg",
-      "stock": "50",
-      "rating": {
-        "rate": 0,
-        "count": 0
-      }
+      "stock": "50"
     },
     {
       "id": "2",
@@ -109,7 +104,14 @@
       }
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": "1",
+      "title": "Van Cleef & Arpels Extraordinaire Precious Oud Eau de Parfum, 75ml",
+      "count": 5,
+      "price": "100"
+    }
+  ],
   "users": [
     {
       "email": "test@gmail.com",

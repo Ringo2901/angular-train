@@ -16,7 +16,7 @@
       <td>{{cartOrder.title}}</td>
       <td>{{cartOrder.count}}</td>
       <td>{{cartOrder.price}}</td>
-      <td>{{cartOrder.price * cartOrder.count}}</td>
+      <td>{{ (cartOrder.price ?? 0) * (cartOrder.count ?? 0) }}</td>
       <td><button (click)="onDelete(cartOrder.id)" class="btn btn-danger">✕</button></td>
     </tr>
     </tbody>
