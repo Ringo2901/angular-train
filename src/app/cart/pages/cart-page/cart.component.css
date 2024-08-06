@@ -1,0 +1,51 @@
+.cart {
+  margin: 10px auto;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.btn {
+  padding: 3px 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c9302c;
+}
+
+.cart-empty {
+  margin-top: 30vh;
+  font-size: 24px;
+  text-align: center;
+  color: #555;
+}

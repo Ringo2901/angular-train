@@ -1,0 +1,12 @@
+<div class="review">
+  <div class="review-header">
+    <h3 class="review-name">{{ review.name ?? 'Anonymous' }}</h3>
+    <div class="review-rating">
+      <span *ngFor="let star of [].constructor(review.rate ?? 0); let i = index" class="star">★</span>
+      <span *ngFor="let star of [].constructor(5 - (review.rate ?? 0)); let i = index" class="star empty">★</span>
+    </div>
+  </div>
+  <div class="review-text">
+    <p>{{ review.text ?? 'No review text available.' }}</p>
+  </div>
+</div>
