@@ -1,10 +1,10 @@
 import {Routes} from '@angular/router';
-import {HomeComponent} from "./pages/home/home.component";
-import {ProductDetailsComponent} from "./pages/product-details/product-details.component";
-import {ProductEditComponent} from "./pages/product-edit/product-edit.component";
-import {CartComponent} from "./pages/cart/cart.component";
-import {AuthComponent} from "./pages/auth/auth.component";
-import {authGuard} from "./pages/auth/auth.guard";
+import {HomeComponent} from "./home/pages/home-page/home.component";
+import {ProductDetailsComponent} from "./product-details/pages/product-details-page/product-details.component";
+import {ProductEditComponent} from "./product-edit/pages/product-edit-page/product-edit.component";
+import {CartComponent} from "./cart/pages/cart-page/cart.component";
+import {AuthComponent} from "./auth/pages/auth-page/auth.component";
+import {authGuard} from "./auth/pages/auth-page/auth.guard";
 
 export const routes: Routes = [
   {
@@ -30,7 +30,7 @@ export const routes: Routes = [
     component: CartComponent,
   },
   {
-    path: 'auth',
+    path: 'auth-page',
     component: AuthComponent
   }
 ];
