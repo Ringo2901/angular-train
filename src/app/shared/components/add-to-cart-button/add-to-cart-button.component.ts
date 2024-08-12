@@ -37,9 +37,6 @@ export class AddToCartButtonComponent {
     this.productService.getProductById(this.productID).subscribe(
       value => this.product = value
     )
-    this.cartService.fetchProductCountInCart(this.productID).subscribe(
-      count => this.numberOfItems = count
-    )
   }
 
   ngOnChanges() {

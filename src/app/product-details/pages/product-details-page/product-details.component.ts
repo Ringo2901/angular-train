@@ -5,12 +5,14 @@ import {ProductModel} from "../../../shared/models/product.model";
 import {ProductService} from "../../../shared/services/products.service";
 import {CartService} from "../../../shared/services/cart.service";
 import {CartModel} from "../../../shared/models/cart.model";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-product-details-page',
   standalone: true,
   imports: [
-    ProductDetailsTileComponent
+    ProductDetailsTileComponent,
+    NgIf
   ],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'

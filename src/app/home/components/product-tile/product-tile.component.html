@@ -8,7 +8,7 @@
     </a>
   </h3>
   <div class="product-details">
-    <span class="product-rating">{{ product.rating?.rate }} ★</span>
+    <span *ngIf="product.rating" class="product-rating">{{ product.rating.rate }} ★</span>
     <span class="product-price">{{ product.price }} $</span>
   </div>
   <div class="product-actions">

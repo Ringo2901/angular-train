@@ -1,4 +1,4 @@
-<div class="product-edit-container">
+<div *ngIf="product" class="product-edit-container">
   <div class="product-image">
     <img [src]="product.image" alt="Product Image" onerror="this.src='../../../assets/NoImage.jpg';">
   </div>
