@@ -12,7 +12,7 @@
     <span class="product-price">{{ product.price }} $</span>
   </div>
   <div class="product-actions">
-    <app-add-to-cart-page-button [numberOfItems]="count" [productID]="product.id" [isDisabled]="product.stock === 0"></app-add-to-cart-page-button>
+    <app-add-to-cart-page-button [numberOfItems]="count" [product]="product" [isDisabled]="product.stock === 0"></app-add-to-cart-page-button>
     <a [routerLink]="['/product/edit', product.id]" class="button">Edit</a>
     <button (click)="deleteProduct()">Delete</button>
   </div>

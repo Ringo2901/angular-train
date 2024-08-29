@@ -21,7 +21,7 @@
         <span *ngIf="product.stock === 0">Out of stock</span>
       </div>
       <div class="product-actions">
-        <app-add-to-cart-page-button [numberOfItems]="count" [productID]="product.id" [isDisabled]="product.stock === 0"></app-add-to-cart-page-button>
+        <app-add-to-cart-page-button [numberOfItems]="count" [product]="product" [isDisabled]="product.stock === 0"></app-add-to-cart-page-button>
       </div>
     </div>
   </div>
